@@ -94,13 +94,8 @@ const UserScreen = (props) => {
               rounded
             />
             <ListItem.Content>
-              {/*<FlatList*/}
-              {/*  data={filteredDataSource}*/}
-              {/*  keyExtractor={(item, index) => index.toString()}*/}
-              {/*  renderItem={ItemView}*/}
-              {/*/>*/}
               <ListItem.Title>{user.propertyType}</ListItem.Title>
-              <ListItem.Subtitle>{user.price}</ListItem.Subtitle>
+              <ListItem.Subtitle>{user.name}</ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         );

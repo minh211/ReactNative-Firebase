@@ -18,10 +18,10 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 const AddRentalScreen = (props) => {
   const options = [
-    { label: "Flat", value: "flat" },
-    { label: "House", value: "house" },
-    { label: "Bungalow", value: "bungalow" },
-    { label: "Mansion", value: "mansion" },
+    { label: "Flat", value: "Flat" },
+    { label: "House", value: "House" },
+    { label: "Bungalow", value: "Bungalow" },
+    { label: "Mansion", value: "Mansion" },
   ];
 
   const options2 = [
