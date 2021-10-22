@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -15,14 +15,14 @@ const UserScreen = (props) => {
     firebase.db.collection("rentals").onSnapshot((querySnapshot) => {
       const users = [];
       querySnapshot.docs.forEach((doc) => {
-        const { name, email, phone, propertyType, price } = doc.data();
+        const { name, email, phone, propertyType, bedroomAmount } = doc.data();
         users.push({
           id: doc.id,
           name,
           email,
           phone,
           propertyType,
-          price,
+          bedroomAmount,
         });
       });
       setFilteredDataSource(users);
@@ -68,6 +68,7 @@ const UserScreen = (props) => {
       <Button
         onPress={() => props.navigation.navigate("CreateRentalScreen")}
         title="Create Your Property"
+        color="#000000"
       />
       <Searchbar
         placeholder="Search"
@@ -94,8 +95,10 @@ const UserScreen = (props) => {
               rounded
             />
             <ListItem.Content>
-              <ListItem.Title>{user.propertyType}</ListItem.Title>
-              <ListItem.Subtitle>{user.name}</ListItem.Subtitle>
+              <ListItem.Title>Property: {user.propertyType}</ListItem.Title>
+              <ListItem.Subtitle>
+                Bedroom: {user.bedroomAmount}
+              </ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         );
@@ -103,4 +106,5 @@ const UserScreen = (props) => {
     </ScrollView>
   );
 };
+
 export default UserScreen;

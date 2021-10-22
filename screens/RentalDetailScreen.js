@@ -14,35 +14,13 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const RentalDetailScreen = (props) => {
-  const options = [
-    { label: "Flat", value: "Flat" },
-    { label: "House", value: "House" },
-    { label: "Bungalow", value: "Bungalow" },
-    { label: "Mansion", value: "Mansion" },
-  ];
-
-  const options2 = [
-    { label: "1", value: "1" },
-    { label: "2", value: "2" },
-    { label: "3", value: "3" },
-    { label: "4", value: "4" },
-    { label: "5", value: "5" },
-    { label: "6", value: "6" },
-  ];
-
-  const [open, setOpen] = useState(false);
-  const [open2, setOpen2] = useState(false);
-  const [state2, setState2] = useState();
-  const [state3, setState3] = useState();
-  const [items, setItems] = useState(options);
-  const [items2, setItems2] = useState(options2);
-
   const initialState = {
     id: "",
     name: "",
     email: "",
     phone: "",
     note: "",
+    price: "",
   };
 
   const [user, setUser] = useState(initialState);
@@ -90,8 +68,7 @@ const RentalDetailScreen = (props) => {
       name: user.name,
       email: user.email,
       phone: user.phone,
-      propertyType: state2,
-      bedroomAmount: state3,
+      price: user.price,
       note: user.note,
     });
     setUser(initialState);
@@ -113,30 +90,6 @@ const RentalDetailScreen = (props) => {
   return (
     <ScrollView style={styles.container}>
       <KeyboardAwareScrollView>
-        <DropDownPicker
-          style={styles.dropdown}
-          open={open}
-          value={state2}
-          items={items}
-          setOpen={setOpen}
-          setValue={setState2}
-          setItems={setItems}
-          zIndex={3000}
-          zIndexInverse={1000}
-          rules={{ required: true }}
-        />
-        <DropDownPicker
-          style={styles.dropdown}
-          open={open2}
-          value={state3}
-          items={items2}
-          setOpen={setOpen2}
-          setValue={setState3}
-          setItems={setItems2}
-          zIndex={2000}
-          zIndexInverse={2000}
-          rules={{ required: true }}
-        />
         <View>
           <TextInput
             placeholder="Name"
@@ -144,6 +97,7 @@ const RentalDetailScreen = (props) => {
             style={styles.inputGroup}
             value={user.name}
             onChangeText={(value) => handleTextChange(value, "name")}
+            editable={false}
           />
         </View>
         <View>
@@ -153,6 +107,7 @@ const RentalDetailScreen = (props) => {
             style={styles.inputGroup}
             value={user.email}
             onChangeText={(value) => handleTextChange(value, "email")}
+            editable={false}
           />
         </View>
         <View>
@@ -162,6 +117,15 @@ const RentalDetailScreen = (props) => {
             style={styles.inputGroup}
             value={user.phone}
             onChangeText={(value) => handleTextChange(value, "phone")}
+            editable={false}
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <TextInput
+            placeholder="Price"
+            onChangeText={(value) => handleTextChange(value, "price")}
+            value={user.price}
+            editable={false}
           />
         </View>
         <View style={styles.inputGroup}>

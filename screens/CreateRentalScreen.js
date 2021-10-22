@@ -7,7 +7,6 @@ import {
   Text,
   ScrollView,
 } from "react-native";
-
 import DropDownPicker from "react-native-dropdown-picker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
@@ -25,7 +24,7 @@ const AddRentalScreen = (props) => {
   ];
 
   const options2 = [
-    { label: "Studio", value: "studio" },
+    { label: "Studio", value: "Studio" },
     { label: "1", value: "1" },
     { label: "2", value: "2" },
     { label: "3", value: "3" },
@@ -153,6 +152,7 @@ const AddRentalScreen = (props) => {
         />
 
         <View>
+          <Button title="Set Date" color="#fff" onPress={showDatePicker} />
           <TextInput
             style={styles.inputGroup}
             placeholder="Date and Time"
@@ -167,7 +167,6 @@ const AddRentalScreen = (props) => {
             onConfirm={handleConfirm}
             onCancel={hideDatePicker}
           />
-          <Button title="Set Date" color="#fff" onPress={showDatePicker} />
         </View>
 
         <View style={styles.wrapperCheckbox}>
@@ -243,7 +242,7 @@ const AddRentalScreen = (props) => {
           />
         </View>
 
-        {/* Input */}
+        {/* Phone Input */}
         <View style={styles.inputGroup}>
           <TextInput
             placeholder="Phone"
@@ -252,6 +251,7 @@ const AddRentalScreen = (props) => {
           />
         </View>
 
+        {/* Note Input */}
         <View style={styles.inputGroup}>
           <TextInput
             placeholder="Note"
