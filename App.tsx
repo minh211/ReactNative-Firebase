@@ -29,20 +29,18 @@ function MyStack() {
       <Stack.Screen
         name="RentalsList"
         component={RentalsList}
-        options={{ title: "Rental List" }}
+        options={{ title: "Property Rental Listings" }}
       />
       <Stack.Screen
         name="CreateRentalScreen"
         component={CreateRentalScreen}
-        options={{ title: "Create a Rental request" }}
+        options={{ title: "Create Rental Property" }}
       />
       <Stack.Screen
         name="RentalDetailScreen"
         component={RentalDetailScreen}
-        options={{ title: "Rental Detail" }}
+        options={{ title: "Rental Details" }}
       />
-
-
     </Stack.Navigator>
   );
 }

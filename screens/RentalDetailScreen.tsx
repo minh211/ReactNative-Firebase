@@ -11,7 +11,8 @@ import { TextInput } from "react-native-gesture-handler";
 
 import firebase from "../database/firebase";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { User } from "./CreateRentalScreen";
+import { Item, User } from "./CreateRentalScreen";
+import DropDownPicker from "react-native-dropdown-picker";
 
 interface UserId extends User {
   id: string;
@@ -26,6 +27,29 @@ const RentalDetailScreen = (props) => {
     note: "",
     price: "",
   };
+  const options: Item[] = [
+    { label: "Flat", value: "Flat" },
+    { label: "House", value: "House" },
+    { label: "Bungalow", value: "Bungalow" },
+    { label: "Mansion", value: "Mansion" },
+  ];
+
+  const options2: Item[] = [
+    { label: "Studio", value: "Studio" },
+    { label: "1", value: "1" },
+    { label: "2", value: "2" },
+    { label: "3", value: "3" },
+    { label: "4", value: "4" },
+    { label: "5", value: "5" },
+    { label: "6", value: "6" },
+  ];
+
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [propertyType, setPropertyType] = useState();
+  const [bedroomAmount, setBedroomAmount] = useState();
+  const [items, setItems] = useState(options);
+  const [items2, setItems2] = useState(options2);
 
   const [user, setUser] = useState<UserId>(initialState);
   const [loading, setLoading] = useState(true);
@@ -68,7 +92,7 @@ const RentalDetailScreen = (props) => {
 
   const updateRequest = async () => {
     const userRef = firebase.db.collection("rentals").doc(user.id);
-    await userRef.set({
+    await userRef.update({
       name: user.name,
       email: user.email,
       phone: user.phone,
@@ -101,6 +125,8 @@ const RentalDetailScreen = (props) => {
             style={styles.inputGroup}
             value={user.name}
             onChangeText={(value) => handleTextChange(value, "name")}
+            editable={false}
+            selectTextOnFocus={false}
           />
         </View>
         <View>
@@ -110,6 +136,8 @@ const RentalDetailScreen = (props) => {
             style={styles.inputGroup}
             value={user.email}
             onChangeText={(value) => handleTextChange(value, "email")}
+            editable={false}
+            selectTextOnFocus={false}
           />
         </View>
         <View>
@@ -119,6 +147,8 @@ const RentalDetailScreen = (props) => {
             style={styles.inputGroup}
             value={user.phone}
             onChangeText={(value) => handleTextChange(value, "phone")}
+            editable={false}
+            selectTextOnFocus={false}
           />
         </View>
         <View style={styles.inputGroup}>

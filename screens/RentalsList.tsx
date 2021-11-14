@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, StyleSheet } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -30,52 +30,9 @@ const UserScreen = (props) => {
     });
   }, []);
 
-  // const searchFilterFunction = (text) => {
-  //   // Check if searched text is not blank
-  //   if (text) {
-  //     // Inserted text is not blank
-  //     // Filter the masterDataSource
-  //     // Update FilteredDataSource
-  //     const newData = users.filter(function (item) {
-  //       const itemData = `${item.propertyType}
-  //         ? ${item.propertyType.toUpperCase()}
-  //         : ${"".toUpperCase()}`;
-  //       const textData = text.toUpperCase();
-  //       return itemData.indexOf(textData) > -1;
-  //     });
-  //     setFilteredDataSource(newData);
-  //     setSearch(text);
-  //   } else {
-  //     // Inserted text is blank
-  //     // Update FilteredDataSource with masterDataSource
-  //     setFilteredDataSource(users);
-  //     setSearch(text);
-  //   }
-  // };
-  // const ItemView = ({ item }) => {
-  //   return (
-  //     // Flat List Item
-  //     <Text onPress={() => getItem(item)}>{item.propertyType}</Text>
-  //   );
-  // };
-  // const getItem = (item) => {
-  //   // Function for click on an item
-  //   alert(item.propertyType);
-  // };
-
   return (
     <ScrollView>
-      <Button
-        onPress={() => props.navigation.navigate("CreateRentalScreen")}
-        title="Create Your Property"
-        color="#000000"
-      />
-      <Searchbar
-        placeholder="Search"
-        // onChangeText={(text) => searchFilterFunction(text)}
-        textAlign={"auto"}
-        value={search}
-      />
+      <Searchbar placeholder="Search" textAlign={"auto"} value={search} />
 
       {users.map((user) => {
         return (
@@ -91,21 +48,34 @@ const UserScreen = (props) => {
             <ListItem.Chevron />
             <Avatar
               source={{
-                uri: "https://uifaces.co/our-content/donated/KBoDdl1J.png",
+                uri: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=046c29138c1335ef8edee7daf521ba50",
               }}
               rounded
             />
             <ListItem.Content>
-              <ListItem.Title>Property: {user.propertyType}</ListItem.Title>
-              <ListItem.Subtitle>
-                Bedroom: {user.bedroomAmount}
-              </ListItem.Subtitle>
+              <ListItem.Title>{user.propertyType}</ListItem.Title>
+              <ListItem.Subtitle>Room: {user.bedroomAmount}</ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         );
       })}
+      <View style={styles.button}>
+        <Button
+          onPress={() => props.navigation.navigate("CreateRentalScreen")}
+          title="Create New Property"
+          color="#fff"
+        />
+      </View>
     </ScrollView>
   );
 };
-
+const styles = StyleSheet.create({
+  button: {
+    marginTop: 10,
+    height: 40,
+    backgroundColor: "#FF5E78",
+    borderRadius: 4,
+    marginHorizontal: 80,
+  },
+});
 export default UserScreen;
